@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Fri Jul 13 12:55:13 2018
+@author: Jenny Fang
 
-@author: jennyfang
-
-testing the function of ASSOM
 """
 import numpy as np
 from assom import ASSOM
@@ -16,7 +13,6 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import f1_score, accuracy_score
 from sklearn import svm
 from collections import Counter
-import matplotlib.pyplot as plt
 
 
 def model_learn_eval(trainData, trainLabel, testData, testLabel, classifier='KNN'):
