@@ -1,15 +1,33 @@
+"""
+Adaptive Subspace Self-Organization Map
+
+@author: Jenny Fang
+"""
+
 import numpy as np
 from numpy.random import rand
 from numpy.linalg import norm
 from numpy.linalg import qr
 
-class ASSOM(object):
+class ASSOM():
     """ This code is to implement adaptive subspace self-organizing map(ASSOM)
     """
     
     def __init__(self, numHiddenNode, numModule, numEpoch=10, sigmaInit=3, sigmaDecay=0.1, etaInit=1, etaDecay=0.4, alpha=0.001):
         """
-            Parameter initialization
+        Parameter initialization
+        
+        Parameters
+        ----------
+        numHiddenNode: number of hidden nodes in one module (less than feature number)
+        numModule    : number of competitive modules 
+        numEpoch     : number of training epoch
+        sigmaInit    : initial value of std in gaussian function
+        sigmaDecay   : decay tate of std in gaussian function
+        etaInit      : initial value of learning rate
+        etaDecay     : decay rate of learning rate
+        alpha: 
+        
         """
         self.numHiddenNode = np.int(numHiddenNode)
         self.numModule = np.int(numModule)
@@ -28,18 +46,18 @@ class ASSOM(object):
             
     def fit(self, data):
         """
-            Fit the ASSOM model given training data.
-            
-            Parameters
-            ----------
-            data : array-like, shape (n_samples, n_features)
-                Training data, where n_samples is the number of samples
-                and n_features is the number of features.
-    
-            Returns
-            -------
-            self : object
-                Returns the instance itself.
+        Fit the ASSOM model given training data.
+        
+        Parameters
+        ----------
+        data : array-like, shape (n_samples, n_features)
+            Training data, where n_samples is the number of samples
+            and n_features is the number of features.
+
+        Returns
+        -------
+        self : object
+            Returns the instance itself.
         
         """
         data = np.array(data, dtype=np.float64)
@@ -52,7 +70,13 @@ class ASSOM(object):
     
     def _fit(self, data):
         """
-            start training the ASSOM given data
+        start training the ASSOM given data
+        
+        Parameters
+        ----------
+        data : array-like, shape (n_samples, n_features)
+            Training data, where n_samples is the number of samples
+            and n_features is the number of features.
         """
         self.som = rand(self.numModule, self.numFeature, self.numHiddenNode)-0.5
         di = np.zeros((self.numModule, self.numFeature, self.numHiddenNode), dtype=np.float64)
