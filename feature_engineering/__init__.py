@@ -1,0 +1,1 @@
+from .assom import ASSOM
